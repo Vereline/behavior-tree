@@ -6,9 +6,14 @@ public abstract class ComputerPlayer : AbstractPlayer
 {
     protected Queue<Vector2Int> pathTilesQueue = new Queue<Vector2Int>();
 
+    protected PathFinder pathFinder;
+
     public override void OnGameStarted()
     {
         base.OnGameStarted();
+        pathFinder = gameObject.AddComponent<PathFinder>();
+
+        pathFinder.InitializeData(parentMaze);
     }
 
     protected override void Update()
@@ -37,7 +42,10 @@ public abstract class ComputerPlayer : AbstractPlayer
     {
         // TODO: Implement this method to make it retrieve the path from the source tile to destination tile
         //       so you can use it in the "derived bots"
-        return new List<Vector2Int> { srcTile };
+        pathFinder.ResetCostMaze();
+        List<Vector2Int> newPath = pathFinder.FindPath(srcTile, destTile);
+        return newPath;
+        //return new List<Vector2Int> { srcTile };
     }
 
     // TODO: To complete this assignment, you will need to write 
