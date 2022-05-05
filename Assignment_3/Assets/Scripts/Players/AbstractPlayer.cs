@@ -107,7 +107,7 @@ public abstract class AbstractPlayer : MonoBehaviour
 
     protected virtual void StartMovementTransitionToNeighboringTile(Vector2Int tile)
     {
-        if(Vector2Int.Distance(tile, CurrentTile) > 1)
+        if((int)Vector2Int.Distance(tile, CurrentTile) > 1)
         {
             Debug.LogError("Cannot move to the tile which is not next to the current one!");
             return;

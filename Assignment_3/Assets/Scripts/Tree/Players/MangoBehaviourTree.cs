@@ -3,20 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
-public enum NodeType : byte
-{
-    Action,
-    Condition,
-    Selector,
-    Sequence
-}
+using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Tree
 {
-    class TreeNode
+    class MangoBehaviourTree : BehaviourTree
     {
-        public NodeType nodeType;
+
     }
 }

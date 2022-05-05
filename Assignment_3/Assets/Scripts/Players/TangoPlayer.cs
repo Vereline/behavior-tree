@@ -19,24 +19,24 @@ public class TangoPlayer : ComputerPlayer
     {
         // TODO Replace with your own code
 
-        Vector2Int[] neighbouringTiles =
-        {
-            new Vector2Int(CurrentTile.x + 1, CurrentTile.y),
-            new Vector2Int(CurrentTile.x, CurrentTile.y - 1),
-            new Vector2Int(CurrentTile.x - 1, CurrentTile.y),
-            new Vector2Int(CurrentTile.x, CurrentTile.y + 1)
-        };
+        //Vector2Int[] neighbouringTiles =
+        //{
+        //    new Vector2Int(CurrentTile.x + 1, CurrentTile.y),
+        //    new Vector2Int(CurrentTile.x, CurrentTile.y - 1),
+        //    new Vector2Int(CurrentTile.x - 1, CurrentTile.y),
+        //    new Vector2Int(CurrentTile.x, CurrentTile.y + 1)
+        //};
 
-        if (pathTilesQueue.Count == 0)
-        {
-            for (var i = 0; i < neighbouringTiles.Length; ++i)
-            {
-                if (maze.IsValidTileOfType(neighbouringTiles[i % neighbouringTiles.Length], MazeTileType.Free))
-                {
-                    pathTilesQueue.Enqueue(neighbouringTiles[i % neighbouringTiles.Length]);
-                    break;
-                }
-            }
-        }
+        //if (pathTilesQueue.Count == 0)
+        //{
+        //    for (var i = 0; i < neighbouringTiles.Length; ++i)
+        //    {
+        //        if (maze.IsValidTileOfType(neighbouringTiles[i % neighbouringTiles.Length], MazeTileType.Free))
+        //        {
+        //            pathTilesQueue.Enqueue(neighbouringTiles[i % neighbouringTiles.Length]);
+        //            break;
+        //        }
+        //    }
+        //}
     }
 }

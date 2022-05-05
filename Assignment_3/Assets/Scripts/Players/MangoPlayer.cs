@@ -15,16 +15,16 @@ public class MangoPlayer : ComputerPlayer
     {
         // TODO Replace with your own code
 
-        if (pathTilesQueue.Count == 0)
-        {
-            for (var i = 0; i < spawnedCollectibles.Count; ++i)
-            {
-                if (Vector2Int.Distance(CurrentTile, spawnedCollectibles[i].TileLocation) <= 1.0f)
-                {
-                    pathTilesQueue.Enqueue(spawnedCollectibles[i].TileLocation);
-                    break;
-                }
-            }
-        }
+        //if (pathTilesQueue.Count == 0)
+        //{
+        //    for (var i = 0; i < spawnedCollectibles.Count; ++i)
+        //    {
+        //        if (Vector2Int.Distance(CurrentTile, spawnedCollectibles[i].TileLocation) <= 1.0f)
+        //        {
+        //            pathTilesQueue.Enqueue(spawnedCollectibles[i].TileLocation);
+        //            break;
+        //        }
+        //    }
+        //}
     }
 }
