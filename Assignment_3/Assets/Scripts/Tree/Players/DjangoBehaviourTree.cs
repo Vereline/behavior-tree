@@ -11,5 +11,11 @@ namespace Assets.Scripts.Tree
     class DjangoBehaviourTree : BehaviourTree
     {
 
+
+        public override void InitTree()
+        {
+            Repeater root = new Repeater(this, null);
+            Root.children.AddLast(root);
+        }
     }
 }

@@ -35,13 +35,17 @@ namespace Assets.Scripts.Tree
 
         public bool isRoot = false;
 
-        public TreeNode(BehaviourTree tree)
+        public TreeNode(BehaviourTree tree, TreeNode parent)
         {
             Tree = tree;
+            if (parent != null)
+            {
+                parentNode = parent;
+            }
             nodeState = NodeState.Idle;
 
             //nodeType = type;
-            //parentNode = parent;
+            
             //isRoot = root;
         }
 

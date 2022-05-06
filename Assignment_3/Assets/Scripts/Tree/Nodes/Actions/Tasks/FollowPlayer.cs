@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Tree
 {
-    class CollectCollectibleItem: TreeNode
+    class FollowPlayer: Task
     {
-        private CollectibleItemType type;
-
-
-        public CollectCollectibleItem(BehaviourTree tree) : base(tree)
+        public FollowPlayer(BehaviourTree tree) : base(tree)
         {
 
         }
 
-        public virtual NodeState Execute()
+        public override NodeState Execute()
         {
             return NodeState.Success;
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Tree
 {
-    class Composite: TreeNode
+    class Composite : TreeNode
     {
         public List<TreeNode> Children { get; set; }
         public Composite(BehaviourTree tree, TreeNode [] children) : base(tree) {

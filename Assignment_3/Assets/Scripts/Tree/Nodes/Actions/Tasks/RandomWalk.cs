@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Tree
 {
-    class FollowPlayer: TreeNode
+    class RandomWalk: Task
     {
-        private ComputerPlayer player;
-
-
-        public FollowPlayer(BehaviourTree tree) : base(tree)
+        public RandomWalk(BehaviourTree tree) : base(tree)
         {
 
         }
 
-        public virtual NodeState Execute()
+        public override NodeState Execute()
         {
             return NodeState.Success;
         }

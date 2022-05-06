@@ -11,6 +11,9 @@ namespace Assets.Scripts.Tree
     class BehaviourTree: MonoBehaviour
     {
         private TreeNode root;
+        private ComputerPlayer character;
+
+        public ComputerPlayer Character { get { return character; } }
 
         public LinkedList<TreeNode> nodes;
         public bool started = false;
@@ -51,23 +54,28 @@ namespace Assets.Scripts.Tree
         }
 
 
-        public void InsertNode()
+        //public void InsertNode()
+        //{
+
+        //}
+
+        public virtual void InitTree()
         {
 
         }
 
-        public void RemoveNode()
-        {
+        //public void RemoveNode()
+        //{
 
-        }
-        public void SearchNode()
-        {
+        //}
+        //public void SearchNode()
+        //{
 
-        }
+        //}
 
-        public void GetBehaviorString()
-        {
+        //public void GetBehaviorString()
+        //{
 
-        }
+        //}
     }
 }
