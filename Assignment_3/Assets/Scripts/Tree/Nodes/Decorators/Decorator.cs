@@ -9,8 +9,14 @@ namespace Assets.Scripts.Tree
     class Decorator: TreeNode
     {
         public TreeNode Child { get; set; }
-        public Decorator(BehaviourTree tree, TreeNode child) : base(tree) {
-            Child = child;
+        public Decorator(BehaviourTree tree, TreeNode parent, TreeNode child) : base(tree, parent) {
+            AttachChild(child);
+        }
+
+        public void AttachChild(TreeNode node)
+        {
+            node.parentNode = this;
+            Child = node;
         }
     }
 }

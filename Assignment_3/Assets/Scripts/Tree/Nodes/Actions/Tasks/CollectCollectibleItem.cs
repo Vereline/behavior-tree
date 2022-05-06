@@ -12,7 +12,7 @@ namespace Assets.Scripts.Tree
         private CollectibleItemType type;
         private Vector2Int collectibleItemLocation;
 
-        public CollectCollectibleItem(BehaviourTree tree) : base(tree)
+        public CollectCollectibleItem(BehaviourTree tree, TreeNode parent, ComputerPlayer player) : base(tree, parent, player)
         {
 
         }

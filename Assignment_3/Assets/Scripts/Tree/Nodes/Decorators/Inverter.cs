@@ -9,7 +9,7 @@ namespace Assets.Scripts.Tree
 {
     class Inverter: Decorator
     {
-        public Inverter(BehaviourTree tree, TreeNode child) : base(tree, child) {
+        public Inverter(BehaviourTree tree, TreeNode parent, TreeNode child) : base(tree, parent, child) {
             
         }
 

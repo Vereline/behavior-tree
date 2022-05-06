@@ -9,8 +9,9 @@ namespace Assets.Scripts.Tree
 {
     class RepeateUntilFail: Decorator
     {
-        public RepeateUntilFail(BehaviourTree tree, TreeNode child) : base(tree, child) {
-            
+        public RepeateUntilFail(BehaviourTree tree, TreeNode parent, TreeNode child) : base(tree, parent, child)
+        {
+
         }
 
         public override NodeState Execute()

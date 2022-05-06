@@ -8,7 +8,7 @@ namespace Assets.Scripts.Tree
 {
     class FollowPlayer: Task
     {
-        public FollowPlayer(BehaviourTree tree) : base(tree)
+        public FollowPlayer(BehaviourTree tree, TreeNode parent, ComputerPlayer player) : base(tree, parent, player)
         {
 
         }

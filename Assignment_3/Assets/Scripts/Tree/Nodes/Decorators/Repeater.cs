@@ -9,7 +9,7 @@ namespace Assets.Scripts.Tree
 {
     class Repeater: Decorator
     {
-        public Repeater(BehaviourTree tree, TreeNode child) : base(tree, child) {
+        public Repeater(BehaviourTree tree, TreeNode parent, TreeNode child) : base(tree, parent, child) {
             
         }
 

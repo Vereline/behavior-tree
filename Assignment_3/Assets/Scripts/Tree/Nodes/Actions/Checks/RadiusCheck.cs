@@ -10,7 +10,7 @@ namespace Assets.Scripts.Tree
     {
         public int desiredRadius = 15; 
 
-        public RadiusCheck(BehaviourTree tree, TreeNode child, int radius) : base(tree, child) {
+        public RadiusCheck(BehaviourTree tree, TreeNode parent, TreeNode child, ComputerPlayer player, int radius) : base(tree, parent, child, player) {
             desiredRadius = radius;
         }
 

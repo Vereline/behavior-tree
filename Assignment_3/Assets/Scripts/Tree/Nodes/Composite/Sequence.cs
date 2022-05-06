@@ -6,34 +6,36 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Tree
 {
-    class Selector : Composite
+    class Sequence : Composite
     {
-        private int currentNode = 0;
-        public Selector(BehaviourTree tree, TreeNode parent, TreeNode[] children) : base(tree, parent, children)
+        public Sequence(BehaviourTree tree, TreeNode parent, TreeNode[] children) : base(tree, parent, children)
         {
  
         }
 
         public override NodeState Execute()
         {
+            bool isRunning = false;
+
             foreach (TreeNode child in Children)
             {
                 switch (child.Execute())
                 {
                     case NodeState.Failure:
-                        continue;
+                        nodeState = NodeState.Failure;
+                        return nodeState;
                     case NodeState.Success:
+                        continue;
+                    case NodeState.Running:
+                        isRunning = true;
+                        continue;
+                    default:
                         nodeState = NodeState.Success;
                         return nodeState;
-                    case NodeState.Running:
-                        nodeState = NodeState.Running;
-                        return nodeState;
-                    default:
-                        continue;
                 }
             }
 
-            nodeState = NodeState.Failure;
+            nodeState = isRunning ? NodeState.Running : NodeState.Success;
             return nodeState;
         }
     }

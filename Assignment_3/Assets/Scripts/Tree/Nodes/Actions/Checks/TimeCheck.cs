@@ -10,7 +10,7 @@ namespace Assets.Scripts.Tree
     {
         public int desiredTime = 15; 
 
-        public TimeCheck(BehaviourTree tree, TreeNode child, int time) : base(tree, child) {
+        public TimeCheck(BehaviourTree tree, TreeNode parent, TreeNode child, ComputerPlayer player, int time) : base(tree, parent, child, player) {
             desiredTime = time;
         }
 

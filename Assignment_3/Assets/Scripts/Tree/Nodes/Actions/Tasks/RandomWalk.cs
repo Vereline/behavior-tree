@@ -8,7 +8,7 @@ namespace Assets.Scripts.Tree
 {
     class RandomWalk: Task
     {
-        public RandomWalk(BehaviourTree tree) : base(tree)
+        public RandomWalk(BehaviourTree tree, TreeNode parent, ComputerPlayer player) : base(tree, parent, player)
         {
 
         }

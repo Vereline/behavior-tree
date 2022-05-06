@@ -4,21 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum NodeType : byte
-{
-    Action,
-    Condition,
-    Selector,
-    Sequence
-}
-
 public enum NodeState : byte
 {
-    Idle,
+    //Idle,
     Running,
     Success,
     Failure,
-    Interrupted,
+    //Interrupted,
 }
 
 namespace Assets.Scripts.Tree
@@ -30,7 +22,6 @@ namespace Assets.Scripts.Tree
         public LinkedList<TreeNode> children;
 
         public BehaviourTree Tree { get; set; }
-        public NodeType nodeType { get; set; }
         public NodeState nodeState { get; set; }
 
         public bool isRoot = false;
@@ -42,16 +33,19 @@ namespace Assets.Scripts.Tree
             {
                 parentNode = parent;
             }
-            nodeState = NodeState.Idle;
+            //nodeState = NodeState.Idle;
 
-            //nodeType = type;
-            
             //isRoot = root;
         }
 
         public virtual NodeState Execute()
         {
-            return NodeState.Idle;
+            return NodeState.Failure;
+        }
+
+        public void SetBlackboardData(string key, object value)
+        {
+            Tree.SetBlackboardData(key, value);
         }
     }
 }

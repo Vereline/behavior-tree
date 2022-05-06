@@ -9,9 +9,17 @@ namespace Assets.Scripts.Tree
     class Check : TreeNode
     {
         public TreeNode Child { get; set; }
+        public ComputerPlayer Player { get; set; } // the one for whom we are checking the 
 
-        public Check(BehaviourTree tree, TreeNode child) : base(tree) {
+        public Check(BehaviourTree tree, TreeNode parent, TreeNode child, ComputerPlayer player) : base(tree, parent)
+        {
             Child = child;
+        }
+
+        public void AttachChild(TreeNode node)
+        {
+            node.parentNode = this;
+            Child = node;
         }
 
         public virtual bool CheckCondition()

@@ -24,9 +24,10 @@ namespace Assets.Scripts.Tree
         private void Start()
         {
             Blackboard = new Dictionary<string, object>();
-            Blackboard.Add("InitTree", null);
+            SetBlackboardData("InitTree", null);
+            InitTree();
 
-            root = new TreeNode(this);
+            //root = new TreeNode(this);
             started = false;
         }
 
@@ -38,6 +39,19 @@ namespace Assets.Scripts.Tree
                 started = true;
             }
 
+        }
+
+        public void SetBlackboardData(string key, object value)
+        {
+            Blackboard[key] = value;
+        }
+
+        public void ClearData(string key)
+        {
+            if (Blackboard.ContainsKey(key))
+            {
+                Blackboard.Remove(key);
+            }
         }
 
         private IEnumerator RunBehaviourTree()

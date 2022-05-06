@@ -9,8 +9,9 @@ namespace Assets.Scripts.Tree
 {
     class Succeeder: Decorator
     {
-        public Succeeder(BehaviourTree tree, TreeNode child) : base(tree, child) {
-            
+        public Succeeder(BehaviourTree tree, TreeNode parent, TreeNode child) : base(tree, parent, child)
+        {
+
         }
 
         public override NodeState Execute()

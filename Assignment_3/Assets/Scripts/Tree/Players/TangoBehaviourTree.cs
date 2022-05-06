@@ -12,7 +12,7 @@ namespace Assets.Scripts.Tree
     {
         public override void InitTree()
         {
-            Repeater root = new Repeater(this, null);
+            Repeater root = new Repeater(this, null, null);
             Root.children.AddLast(root);
         }
     }

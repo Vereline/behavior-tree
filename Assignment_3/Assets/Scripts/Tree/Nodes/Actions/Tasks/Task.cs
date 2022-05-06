@@ -8,9 +8,11 @@ namespace Assets.Scripts.Tree
 {
     class Task: TreeNode
     {
-        public Task(BehaviourTree tree) : base(tree)
-        {
+        public ComputerPlayer Player { get; set; } // the one who is going to perform a task
 
+        public Task(BehaviourTree tree, TreeNode parent, ComputerPlayer player) : base(tree, parent)
+        {
+            Player = player;
         }
 
         public override NodeState Execute()
