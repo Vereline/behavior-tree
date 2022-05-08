@@ -16,8 +16,26 @@ namespace Assets.Scripts.Tree
 
         public override NodeState Execute()
         {
-            Debug.Log("Repeater returned " + Child.Execute());
-            return NodeState.Running;
+
+            Debug.Log("Repeater until fail returned ");
+            //NodeState state = Child.Execute();
+            //if (state == NodeState.Failure)
+            //{
+            //    nodeState = state;
+
+            //} else
+            //{
+            //    nodeState = NodeState.Running;
+            //}
+
+            NodeState state;
+            do
+            {
+                state = Child.Execute();
+            } while (state != NodeState.Failure);
+
+            nodeState = state;
+            return nodeState;
         }
     }
 }

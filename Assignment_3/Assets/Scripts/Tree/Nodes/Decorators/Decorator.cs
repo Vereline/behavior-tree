@@ -10,10 +10,10 @@ namespace Assets.Scripts.Tree
     {
         public TreeNode Child { get; set; }
         public Decorator(BehaviourTree tree, TreeNode parent, TreeNode child) : base(tree, parent) {
-            AttachChild(child);
+            
         }
 
-        public void AttachChild(TreeNode node)
+        public virtual void AttachChild(TreeNode node)
         {
             node.parentNode = this;
             Child = node;

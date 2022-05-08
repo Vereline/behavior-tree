@@ -103,6 +103,11 @@ public class Maze : MonoBehaviour
         return IsInBoundsTile(tile) && MazeTiles[tile.y][tile.x] == type;
     }
 
+    public bool IsAccessibleTile(Vector2Int tile)
+    {
+        return IsInBoundsTile(tile) && !IsValidTileOfType(tile, MazeTileType.Wall);
+    }
+
     public void SetFreeTileColor(Vector2Int tile, Color color)
     {
         if (IsValidTileOfType(tile, MazeTileType.Free))

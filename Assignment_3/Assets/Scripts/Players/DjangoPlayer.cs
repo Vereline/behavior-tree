@@ -1,9 +1,12 @@
+using Assets.Scripts.Tree;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DjangoPlayer : ComputerPlayer
 {
+
+    private DjangoBehaviourTree djangoBehaviourTree;
     public override void OnGameStarted()
     {
         base.OnGameStarted();
@@ -11,6 +14,7 @@ public class DjangoPlayer : ComputerPlayer
         // This will be the real Django Unchained!
 
         // Django is my favorite Web framework <3
+        djangoBehaviourTree = new DjangoBehaviourTree(this);
     }
 
 
@@ -32,5 +36,7 @@ public class DjangoPlayer : ComputerPlayer
         //        }
         //    }
         //}
+        Debug.Log("HELP ME PLEASE");
+        djangoBehaviourTree.RunBehaviourTree(maze, players, spawnedCollectibles, remainingGameTime);
     }
 }

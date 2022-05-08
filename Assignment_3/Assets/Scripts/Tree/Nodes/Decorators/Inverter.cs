@@ -15,14 +15,15 @@ namespace Assets.Scripts.Tree
 
         public override NodeState Execute()
         {
-            NodeState nodeState = Child.Execute();
+            NodeState state = Child.Execute();
             
-            if (nodeState == NodeState.Success)
+            if (state == NodeState.Success)
             {
-                return NodeState.Failure;
-            } else if (nodeState == NodeState.Failure)
+                nodeState = NodeState.Failure;
+                
+            } else if (state == NodeState.Failure)
             {
-                return NodeState.Success;
+                nodeState = NodeState.Success;
             }
 
             return nodeState;

@@ -9,11 +9,9 @@ namespace Assets.Scripts.Tree
 {
     class CollectCollectibleItem: Task
     {
-        private CollectibleItemType type;
-        private Vector2Int collectibleItemLocation;
-
-        public CollectCollectibleItem(BehaviourTree tree, TreeNode parent, ComputerPlayer player) : base(tree, parent, player)
+        public CollectCollectibleItem(BehaviourTree tree, TreeNode parent) : base(tree, parent)
         {
+            Debug.Log("CollectCollectibleItem initiated");
 
         }
 

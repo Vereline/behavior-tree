@@ -10,6 +10,10 @@ namespace Assets.Scripts.Tree
 {
     class MangoBehaviourTree : BehaviourTree
     {
+        public MangoBehaviourTree(ComputerPlayer computerPlayer) : base(computerPlayer)
+        {
+
+        }
         public override void InitTree()
         {
             Repeater root = new Repeater(this, null, null);

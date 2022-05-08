@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Tree;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ComputerPlayer : AbstractPlayer
 {
-    protected Queue<Vector2Int> pathTilesQueue = new Queue<Vector2Int>();
+    public Queue<Vector2Int> pathTilesQueue = new Queue<Vector2Int>();
 
     protected PathFinder pathFinder;
 

@@ -16,8 +16,11 @@ namespace Assets.Scripts.Tree
 
         public override NodeState Execute()
         {
-            Debug.Log("Succeeder returned" + Child.Execute());
-            return NodeState.Success;
+            Debug.Log("Succeeder returned");
+            NodeState state = Child.Execute();
+            if (state == NodeState.Failure)
+                nodeState = NodeState.Success;
+            return nodeState;
         }
     }
 }

@@ -8,42 +8,37 @@ using UnityEngine;
 
 namespace Assets.Scripts.Tree
 {
-    class BehaviourTree: MonoBehaviour
+    class BehaviourTree
     {
-        private TreeNode root;
-        private ComputerPlayer character;
+        protected TreeNode root;
+        private ComputerPlayer player;
 
-        public ComputerPlayer Character { get { return character; } }
+        public ComputerPlayer Player { get { return player; } }
 
-        public LinkedList<TreeNode> nodes;
-        public bool started = false;
         public Dictionary<string, object> Blackboard { get; set; }
         public TreeNode Root { get { return root; } }
-        private Coroutine behavior;
-
-        private void Start()
+        
+        public BehaviourTree(ComputerPlayer computerPlayer)
         {
+            player = computerPlayer;
             Blackboard = new Dictionary<string, object>();
-            SetBlackboardData("InitTree", null);
+            Debug.Log("Tree initiate started");
+            
             InitTree();
 
-            //root = new TreeNode(this);
-            started = false;
-        }
-
-        private void Update()
-        {
-            if (!started)
-            {
-                behavior = StartCoroutine(RunBehaviourTree());
-                started = true;
-            }
+            Debug.Log("Tree initiated");
 
         }
 
         public void SetBlackboardData(string key, object value)
         {
             Blackboard[key] = value;
+        }
+
+        public object GetBlackboardData(string key)
+        {
+            Blackboard.TryGetValue(key, out object value);
+            return value;
         }
 
         public void ClearData(string key)
@@ -54,42 +49,30 @@ namespace Assets.Scripts.Tree
             }
         }
 
-        private IEnumerator RunBehaviourTree()
+        public void RunBehaviourTree(Maze maze, List<AbstractPlayer> players, List<CollectibleItem> spawnedCollectibles, float remainingGameTime)
         {
+            SetBlackboardData("maze", maze);
+            SetBlackboardData("players", players);
+            SetBlackboardData("spawnedCollectibles", spawnedCollectibles);
+            SetBlackboardData("remainingGameTime", remainingGameTime);
+
+            PrepareBlackboardData();
+
+            Debug.Log("Start execution");
+
             NodeState state = Root.Execute();
-            while (state == NodeState.Running)
-            {
-                Debug.Log("Doing Something. State " + state);
-                yield return null;
-                state = Root.Execute();
-            }
 
             Debug.Log("Behaviour finished. State " + state);
         }
 
+        public virtual void PrepareBlackboardData()
+        {
 
-        //public void InsertNode()
-        //{
-
-        //}
+        }
 
         public virtual void InitTree()
         {
 
         }
-
-        //public void RemoveNode()
-        //{
-
-        //}
-        //public void SearchNode()
-        //{
-
-        //}
-
-        //public void GetBehaviorString()
-        //{
-
-        //}
     }
 }

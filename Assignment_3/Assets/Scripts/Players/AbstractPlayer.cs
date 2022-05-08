@@ -57,6 +57,8 @@ public abstract class AbstractPlayer : MonoBehaviour
 
     protected Maze parentMaze;
 
+    public Maze ParentMaze { get { return parentMaze; } }
+
     protected Vector3 nextWorldMovePos;
 
     protected Vector2Int transitionEndTile;
@@ -92,7 +94,7 @@ public abstract class AbstractPlayer : MonoBehaviour
 
     public virtual void OnGameStarted() { }
 
-    protected virtual bool MovementTransitionFinished()
+    public virtual bool MovementTransitionFinished()
     {
         if(Vector2.SqrMagnitude(nextWorldMovePos - transform.position) <=
             movementTransitionDistanceToleranceSq)

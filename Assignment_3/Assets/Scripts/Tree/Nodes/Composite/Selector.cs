@@ -8,7 +8,6 @@ namespace Assets.Scripts.Tree
 {
     class Selector : Composite
     {
-        private int currentNode = 0;
         public Selector(BehaviourTree tree, TreeNode parent, TreeNode[] children) : base(tree, parent, children)
         {
  

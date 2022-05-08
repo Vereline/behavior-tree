@@ -10,6 +10,11 @@ namespace Assets.Scripts.Tree
 {
     class TangoBehaviourTree : BehaviourTree
     {
+        public TangoBehaviourTree(ComputerPlayer computerPlayer) : base(computerPlayer)
+        {
+
+        }
+
         public override void InitTree()
         {
             Repeater root = new Repeater(this, null, null);

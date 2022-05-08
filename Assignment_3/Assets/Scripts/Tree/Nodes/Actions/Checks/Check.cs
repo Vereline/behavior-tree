@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Tree
 {
@@ -14,6 +15,7 @@ namespace Assets.Scripts.Tree
         public Check(BehaviourTree tree, TreeNode parent, TreeNode child, ComputerPlayer player) : base(tree, parent)
         {
             Child = child;
+            Debug.Log("Check initiated");
         }
 
         public void AttachChild(TreeNode node)

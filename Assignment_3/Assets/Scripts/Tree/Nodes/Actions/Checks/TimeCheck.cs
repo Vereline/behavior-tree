@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Tree
 {
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Tree
 
         public TimeCheck(BehaviourTree tree, TreeNode parent, TreeNode child, ComputerPlayer player, int time) : base(tree, parent, child, player) {
             desiredTime = time;
+            Debug.Log("TimeCheck initiated");
         }
 
         public override bool CheckCondition(int time)
