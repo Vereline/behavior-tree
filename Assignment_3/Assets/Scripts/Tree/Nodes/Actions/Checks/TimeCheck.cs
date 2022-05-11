@@ -9,14 +9,14 @@ namespace Assets.Scripts.Tree
 {
     class TimeCheck: Check
     {
-        public int desiredTime = 15; 
+        public float desiredTime = 15; 
 
-        public TimeCheck(BehaviourTree tree, TreeNode parent, TreeNode child, ComputerPlayer player, int time) : base(tree, parent, child, player) {
+        public TimeCheck(BehaviourTree tree, TreeNode parent, TreeNode child, float time) : base(tree, parent, child) {
             desiredTime = time;
             Debug.Log("TimeCheck initiated");
         }
 
-        public override bool CheckCondition(int time)
+        public override bool CheckCondition(float time)
         {
             if (desiredTime >= time)
             {
@@ -25,6 +25,27 @@ namespace Assets.Scripts.Tree
             {
                 return false;
             }
+        }
+
+        public override NodeState Execute()
+        {
+            float time = (float)Tree.GetBlackboardData("remainingGameTime");
+            bool statusCheck = CheckCondition(time);
+            
+            Debug.Log("TimeCheck status " + statusCheck.ToString());
+
+            if (Child != null)
+            {
+                nodeState = statusCheck == true ? Child.Execute() : NodeState.Failure;
+            }
+            else
+            {
+                nodeState = statusCheck == true ? NodeState.Success : NodeState.Failure;
+            }
+
+            Debug.Log("TimeCheck returned " + nodeState);
+
+            return nodeState;
         }
     }
 }

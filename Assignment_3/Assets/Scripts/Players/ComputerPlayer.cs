@@ -8,6 +8,7 @@ public abstract class ComputerPlayer : AbstractPlayer
     public Queue<Vector2Int> pathTilesQueue = new Queue<Vector2Int>();
 
     protected PathFinder pathFinder;
+    public float GameLengthSeconds { get; protected set; }
 
     public override void OnGameStarted()
     {
@@ -15,6 +16,7 @@ public abstract class ComputerPlayer : AbstractPlayer
         pathFinder = gameObject.AddComponent<PathFinder>();
 
         pathFinder.InitializeData(parentMaze);
+        GameLengthSeconds = GameManager.Instance.GameLengthSeconds;
     }
 
     protected override void Update()
@@ -31,6 +33,7 @@ public abstract class ComputerPlayer : AbstractPlayer
 
     protected override Vector2Int GetNextPathTile()
     {
+        Debug.Log("SHOULD STEP returned " + pathTilesQueue.Count);
         if (pathTilesQueue.Count > 0)
         {
             return pathTilesQueue.Dequeue();

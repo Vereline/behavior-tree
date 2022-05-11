@@ -52,8 +52,8 @@ namespace Assets.Scripts.Tree
         public void RunBehaviourTree(Maze maze, List<AbstractPlayer> players, List<CollectibleItem> spawnedCollectibles, float remainingGameTime)
         {
             SetBlackboardData("maze", maze);
-            SetBlackboardData("players", players);
-            SetBlackboardData("spawnedCollectibles", spawnedCollectibles);
+            SetBlackboardData("players", new List<AbstractPlayer>(players));
+            SetBlackboardData("spawnedCollectibles", new List<CollectibleItem>(spawnedCollectibles));
             SetBlackboardData("remainingGameTime", remainingGameTime);
 
             PrepareBlackboardData();

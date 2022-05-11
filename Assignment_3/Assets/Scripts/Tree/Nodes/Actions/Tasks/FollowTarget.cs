@@ -17,7 +17,7 @@ namespace Assets.Scripts.Tree
         public override NodeState Execute()
         {
 
-            if (Tree.Player.pathTilesQueue.Count == 0 && Tree.Player.MovementTransitionFinished())
+            if (Tree.Player.MovementTransitionFinished())
             {
                 AbstractPlayer target = (AbstractPlayer)Tree.GetBlackboardData("target");
 
@@ -27,9 +27,13 @@ namespace Assets.Scripts.Tree
                     List<Vector2Int> path = Tree.Player.GetPathFromTo(Tree.Player.CurrentTile, target.CurrentTile);
                     path.ForEach(tile => Tree.Player.pathTilesQueue.Enqueue(tile));
                 }
+                nodeState = NodeState.Success;
+            } else
+            {
+                nodeState = NodeState.Failure;
             }
             
-            nodeState = NodeState.Success;
+            
 
             Debug.Log("Follow target returned " + nodeState);
             return nodeState;

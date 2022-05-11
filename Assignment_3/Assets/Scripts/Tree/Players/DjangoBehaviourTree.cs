@@ -17,21 +17,22 @@ namespace Assets.Scripts.Tree
 
         public override void InitTree()
         {
-            //Repeater treeRoot = new Repeater(this, null, null);
-            //treeRoot.AttachChild(new RandomWalk(this, root, Player));
+            // TREE
+            Selector selector = new Selector(this, null, new List<TreeNode>());
 
-            // works
-            //RandomWalk randomWalknew = new RandomWalk(this, root);
+            Sequence sequence = new Sequence(this, null, new List<TreeNode>());
 
-            // works
-            //FollowTarget ft = new FollowTarget(this, root);
+            RadiusCheck rc = new RadiusCheck(this, sequence, null, 3);
+ 
+            sequence.AttachChild(new FindClosestItem(this, sequence));
+            sequence.AttachChild(rc);
+            sequence.AttachChild(new CollectCollectibleItem(this, null));
 
-            FindClosestItem ft = new FindClosestItem(this, root);
+            selector.AttachChild(sequence);
+            selector.AttachChild(new FollowTarget(this, root));
 
-            //if (c.GetType() == typeof(TForm))
+            root = selector;
 
-            //treeRoot.AttachChild(randomWalknew);
-            root = ft;
         }
 
         public override void PrepareBlackboardData()

@@ -652,10 +652,8 @@ MonoBehaviour:
   winnerText: {fileID: 1453494090}
   gameOverPoints: {fileID: 1870315588}
   winnerImage: {fileID: 1784307325}
-  movementSpeed: 7
   gameLengthSeconds: 60
   collectiblesMaxCount: 4
-  botSpeedModifier: 0.75
   collectiblesLifetimeSec: 10
   collectiblesIndividualRespawnDelay: 0.25
   collectibleProbabilities:
@@ -666,6 +664,10 @@ MonoBehaviour:
   - type: 2
     probability: 0.2
   audioEnabled: 1
+  movementSpeed: 7
+  botSpeedModifier: 0.75
+  movSpeedCollIncrease: 1.1
+  maxSpeedMultiple: 2
 --- !u!1 &678841959
 GameObject:
   m_ObjectHideFlags: 0

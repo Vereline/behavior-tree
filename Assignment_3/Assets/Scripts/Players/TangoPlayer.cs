@@ -1,9 +1,12 @@
+using Assets.Scripts.Tree;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TangoPlayer : ComputerPlayer
 {
+    private TangoBehaviourTree tangoBehaviourTree;
+
     public override void OnGameStarted()
     {
         base.OnGameStarted();
@@ -13,6 +16,8 @@ public class TangoPlayer : ComputerPlayer
         // along the Río de la Plata, the natural border between Argentina and Uruguay.
         // ---
         // Is this relevant? Probably not but it is nice to learn something, right?
+        tangoBehaviourTree = new TangoBehaviourTree(this);
+
     }
 
     protected override void EvaluateDecisions(Maze maze, List<AbstractPlayer> players, List<CollectibleItem> spawnedCollectibles, float remainingGameTime)
@@ -38,5 +43,10 @@ public class TangoPlayer : ComputerPlayer
         //        }
         //    }
         //}
+
+        if (pathTilesQueue.Count == 0)
+        {
+            tangoBehaviourTree.RunBehaviourTree(maze, players, spawnedCollectibles, remainingGameTime);
+        }
     }
 }

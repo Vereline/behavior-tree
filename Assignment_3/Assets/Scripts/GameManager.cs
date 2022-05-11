@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     }
 
     public float TimeRemaining { get; private set; }
+    public float GameLengthSeconds { get { return gameLengthSeconds; } }
 
     public float MovSpeedCollIncrease => movSpeedCollIncrease;
 

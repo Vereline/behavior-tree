@@ -14,7 +14,8 @@ namespace Assets.Scripts.Tree
 
         public override NodeState Execute()
         {
-            return NodeState.Success;
+            nodeState = NodeState.Success;
+            return nodeState;
         }
     }
 }

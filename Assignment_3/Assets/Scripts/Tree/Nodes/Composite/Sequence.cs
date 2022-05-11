@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Tree
 {
     class Sequence : Composite
     {
-        public Sequence(BehaviourTree tree, TreeNode parent, TreeNode[] children) : base(tree, parent, children)
+        public Sequence(BehaviourTree tree, TreeNode parent, List<TreeNode> children) : base(tree, parent, children)
         {
  
         }
@@ -23,6 +24,7 @@ namespace Assets.Scripts.Tree
                 {
                     case NodeState.Failure:
                         nodeState = NodeState.Failure;
+                        Debug.Log("Sequence returned " + nodeState);
                         return nodeState;
                     case NodeState.Success:
                         continue;
@@ -31,11 +33,14 @@ namespace Assets.Scripts.Tree
                         continue;
                     default:
                         nodeState = NodeState.Success;
+                        Debug.Log("Sequence returned " + nodeState);
                         return nodeState;
                 }
             }
 
             nodeState = isRunning ? NodeState.Running : NodeState.Success;
+
+            Debug.Log("Sequence returned " + nodeState);
             return nodeState;
         }
     }

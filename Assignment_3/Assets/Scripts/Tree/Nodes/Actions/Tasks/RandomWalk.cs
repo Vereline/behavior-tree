@@ -19,31 +19,33 @@ namespace Assets.Scripts.Tree
 
         public override NodeState Execute()
         {
-            // get random point
+            // get random point (max 1 step)
             // go to it
             // get new random point
-            
-            if (Tree.Player.pathTilesQueue.Count == 0 && Tree.Player.MovementTransitionFinished())
+            if (Tree.Player.MovementTransitionFinished())
             {
-
                 Maze maze = (Maze)Tree.GetBlackboardData("maze");
                 Vector2Int destTile = new Vector2Int();
-                nodeState = NodeState.Running;
                 do
                 {
+                    // absolute random position in a range
                     destTile.x = random.Next(maze.MazeTiles[0].Count);
                     destTile.y = random.Next(maze.MazeTiles.Count);
+
+                    // random position in range 1 tile
+                    //destTile.x = random.Next(Tree.Player.CurrentTile.x - 2, Tree.Player.CurrentTile.x + 2);
+                    //destTile.y = random.Next(Tree.Player.CurrentTile.y - 2, Tree.Player.CurrentTile.y + 2);
                 } while (!maze.IsAccessibleTile(destTile));
 
                 List<Vector2Int> path = Tree.Player.GetPathFromTo(Tree.Player.CurrentTile, destTile);
 
-                //Player.pathTilesQueue.Clear();
+                Tree.Player.pathTilesQueue.Clear();
                 path.ForEach(tile => Tree.Player.pathTilesQueue.Enqueue(tile));
-                nodeState = NodeState.Success;
+                nodeState = NodeState.Running;
             } else
             {
                 // the path was composed and we assume that character is already moving
-                nodeState = NodeState.Success;
+                nodeState = NodeState.Failure;
             }
             Debug.Log("Random walk returned " + nodeState);
             return nodeState;

@@ -12,30 +12,30 @@ namespace Assets.Scripts.Tree
         public CollectCollectibleItem(BehaviourTree tree, TreeNode parent) : base(tree, parent)
         {
             Debug.Log("CollectCollectibleItem initiated");
-
-        }
-
-        public void FindCollectibleItemOnMap()
-        {
-           
         }
 
         public override NodeState Execute()
         {
-            //if (Tree.character.currentPosition == collectibleItemLocation)
-            //{
-            //    if (!FindCollectibleItemOnMap())
-            //    {
-            //        return NodeState.Failure;
-            //    }
-            //    else
-            //    {
-            //        return NodeState.Success;
-            //    }
-            //} else { // TODO make runnung return NodeState.Running}
+            CollectibleItem lastItem = (CollectibleItem)Tree.GetBlackboardData("lastItem");
 
-            // TEMP 
-            return NodeState.Running;
+            if (lastItem != null && Tree.Player.MovementTransitionFinished())
+            {
+                Tree.Player.pathTilesQueue.Clear();
+                List<Vector2Int> shortestPath = (List<Vector2Int>)Tree.GetBlackboardData("shortestPath");
+                shortestPath.ForEach(tile => Tree.Player.pathTilesQueue.Enqueue(tile));
+
+                //                Tree.SetBlackboardData("runningTask", "CollectCollectibleItem");
+
+                Debug.Log("CollectCollectibleItem path COUNT" + Tree.Player.pathTilesQueue.Count);
+                nodeState = NodeState.Running;
+                Debug.Log("CollectCollectibleItem returned " + nodeState);
+                return nodeState;
+            }
+
+            nodeState = NodeState.Failure;
+            Debug.Log("CollectCollectibleItem returned " + nodeState);
+
+            return nodeState;
         }
     }
 }

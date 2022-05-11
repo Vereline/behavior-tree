@@ -9,7 +9,7 @@ namespace Assets.Scripts.Tree
     class Composite : TreeNode
     {
         public List<TreeNode> Children { get; set; }
-        public Composite(BehaviourTree tree, TreeNode parent, TreeNode[] children) : base(tree, parent) {
+        public Composite(BehaviourTree tree, TreeNode parent, List<TreeNode> children) : base(tree, parent) {
             Children = new List<TreeNode>();
 
             foreach (TreeNode child in children)

@@ -36,7 +36,10 @@ public class DjangoPlayer : ComputerPlayer
         //        }
         //    }
         //}
-        Debug.Log("HELP ME PLEASE");
-        djangoBehaviourTree.RunBehaviourTree(maze, players, spawnedCollectibles, remainingGameTime);
+
+        if (pathTilesQueue.Count == 0) {
+            djangoBehaviourTree.RunBehaviourTree(maze, players, spawnedCollectibles, remainingGameTime);
+        }
+        
     }
 }

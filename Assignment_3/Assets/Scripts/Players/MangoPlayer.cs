@@ -1,14 +1,20 @@
+using Assets.Scripts.Tree;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MangoPlayer : ComputerPlayer
 {
+
+    private MangoBehaviourTree mangoBehaviourTree;
+
     public override void OnGameStarted()
     {
         base.OnGameStarted();
 
         // Did you know that Mango is a tree?
+        mangoBehaviourTree = new MangoBehaviourTree(this);
+
     }
 
     protected override void EvaluateDecisions(Maze maze, List<AbstractPlayer> players, List<CollectibleItem> spawnedCollectibles, float remainingGameTime)
@@ -26,5 +32,9 @@ public class MangoPlayer : ComputerPlayer
         //        }
         //    }
         //}
+        if (pathTilesQueue.Count == 0)
+        {
+            mangoBehaviourTree.RunBehaviourTree(maze, players, spawnedCollectibles, remainingGameTime);
+        }
     }
 }

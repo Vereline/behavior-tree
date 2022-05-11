@@ -17,44 +17,38 @@ namespace Assets.Scripts.Tree
 
         public override NodeState Execute()
         {
+
             List<CollectibleItem> spawnedCollectibles = (List<CollectibleItem>)Tree.GetBlackboardData("spawnedCollectibles");
-            object lastItem = Tree.GetBlackboardData("lastItem");
 
-            bool tileWithColectible = false;
-
-            if (lastItem != null)
+            if (spawnedCollectibles.Count == 0)
             {
-                Vector2Int lastItemLocation = (Vector2Int)lastItem;
-                for (int i = 0; i < spawnedCollectibles.Count; i++)
+                nodeState = NodeState.Failure;
+                Debug.Log("FindClosestItem returned " + nodeState);
+                return nodeState;
+            }
+
+            List<Vector2Int> shortestPath = Tree.Player.GetPathFromTo(Tree.Player.CurrentTile, spawnedCollectibles[0].TileLocation);
+            CollectibleItem closestCollectible = spawnedCollectibles[0];
+
+            for (int i = 1; i < spawnedCollectibles.Count; i++)
+            {
+                List<Vector2Int> path = Tree.Player.GetPathFromTo(Tree.Player.CurrentTile, spawnedCollectibles[i].TileLocation);
+
+                if (shortestPath.Count > path.Count)
                 {
-                    if (lastItemLocation == spawnedCollectibles[i].TileLocation)
-                    {
-                        tileWithColectible = true;
-                        break;
-                    }
+                    shortestPath = path;
+                    closestCollectible = spawnedCollectibles[i];
                 }
             }
 
-            if ((Tree.Player.pathTilesQueue.Count == 0 || !tileWithColectible) && spawnedCollectibles.Count > 0 && Tree.Player.MovementTransitionFinished())
-            {
-                List<Vector2Int> shortestPath = Tree.Player.GetPathFromTo(Tree.Player.CurrentTile, spawnedCollectibles[0].TileLocation);
-
-                for (int i = 1; i < spawnedCollectibles.Count; i++)
-                {
-                    List<Vector2Int> path = Tree.Player.GetPathFromTo(Tree.Player.CurrentTile, spawnedCollectibles[i].TileLocation);
-
-                    if (shortestPath.Count > path.Count)
-                    {
-                        shortestPath = path;
-                    }
-                }
-
-                shortestPath.ForEach(tile => Tree.Player.pathTilesQueue.Enqueue(tile));
-                Tree.SetBlackboardData("lastItem", shortestPath[shortestPath.Count - 1]);
-            }
+            // shortestPath.ForEach(tile => Tree.Player.pathTilesQueue.Enqueue(tile));
+            Tree.SetBlackboardData("shortestPath", shortestPath);
+            Tree.SetBlackboardData("lastItem", closestCollectible);
+            Tree.SetBlackboardData("itemType", closestCollectible.Type);
+            Tree.SetBlackboardData("currentItemPosition", shortestPath[shortestPath.Count - 1]);
 
             nodeState = NodeState.Success;
-
+            Debug.Log("FindClosestItem returned " + nodeState);
             return nodeState;
         }
     }

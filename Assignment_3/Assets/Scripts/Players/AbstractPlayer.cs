@@ -111,6 +111,9 @@ public abstract class AbstractPlayer : MonoBehaviour
     {
         if((int)Vector2Int.Distance(tile, CurrentTile) > 1)
         {
+            // for testing purposes
+            parentMaze.SetFreeTileColor(CurrentTile, Color.red);
+            parentMaze.SetFreeTileColor(tile, Color.blue);
             Debug.LogError("Cannot move to the tile which is not next to the current one!");
             return;
         }
